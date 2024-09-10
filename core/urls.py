@@ -1,0 +1,12 @@
+from django.urls import path
+from core.views import *
+
+app_name='core'
+
+urlpatterns = [
+    path('',index,name='index'),
+    path('products/',prodcut_list,name='products'),
+    path('category/',category_list,name='category'),
+    path('category/<cid>/',category_product_list,name="category-product-list")
+
+]
