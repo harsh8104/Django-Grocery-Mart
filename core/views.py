@@ -38,3 +38,4 @@ def category_list(request):
         'categories':category
     }
     return render(request,'core/category.html',context)
+
