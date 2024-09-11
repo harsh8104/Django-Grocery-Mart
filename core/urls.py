@@ -7,6 +7,9 @@ urlpatterns = [
     path('',index,name='index'),
     path('products/',prodcut_list,name='products'),
     path('category/',category_list,name='category'),
-    path('category/<cid>/',category_product_list,name="category-product-list")
+    path('category/<cid>/',category_product_list,name="category-product-list"),
+
+    path('vendors/',vendor_list,name="vendor-list"),
+    path('vendor/<vid>/',vendor_list_detail,name="vendor-detail"),
 
 ]

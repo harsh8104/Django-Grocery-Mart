@@ -52,6 +52,7 @@ class Vendor(models.Model):
     vid=ShortUUIDField(unique=True,length=10,max_length=30,prefix='ven',alphabet='abcdefgh12345')
     title=models.CharField(max_length=100,default='Nestify Vendor')
     image=models.ImageField(upload_to=user_directory_path,default="vendor.jpg")
+    cover_image=models.ImageField(upload_to=user_directory_path,default="vendor.jpg")
     description=models.TextField(null=True,blank=True,default='I am an amazing vendor')
     address=models.CharField(max_length=100,default='S.G Highway Ahmedabad')
     contact=models.CharField(max_length=100,default='+91 123456789')
@@ -61,7 +62,7 @@ class Vendor(models.Model):
     days_return=models.CharField(max_length=100,default='100')
     warranty_period=models.CharField(max_length=100,default="100")
     user=models.ForeignKey(User,on_delete=models.CASCADE)
-    
+    date=models.DateTimeField(auto_now_add=True,null=True,blank=True)
     class Meta:
         verbose_name_plural = "Vendors"
     
@@ -89,7 +90,7 @@ class Products(models.Model):
     # tags=models.ForeignKey(Tags,on_delete=models.SET_NULL,null=True)
 
     product_status=models.CharField(choices=STATUS,max_length=10,default='in_review')
-    vendor=models.ForeignKey(Vendor,on_delete=models.SET_NULL,null=True)
+    vendor=models.ForeignKey(Vendor,on_delete=models.SET_NULL,null=True,related_name="vendor")
     status=models.BooleanField(default=True)
     in_stock=models.BooleanField(default=True)
     featured=models.BooleanField(default=False)
