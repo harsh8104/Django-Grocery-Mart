@@ -55,3 +55,15 @@ def vendor_list_detail(request,vid):
         'products':product
     }
     return render(request,'core/vendor-detail.html',context)
+
+
+def product_detail(request,pid):
+    product=Products.objects.get(pid=pid)
+
+    p_image=product.p_images.all()
+    context={
+        'product':product,
+        'p_image':p_image
+    }
+    return render(request,'core/product-detail.html',context)
+
