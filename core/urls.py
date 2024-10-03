@@ -16,4 +16,6 @@ urlpatterns = [
     path('products/',prodcut_list,name='products'),
     path('product/<pid>/',product_detail,name="product-detail"),
 
+
+    path("products/tags/<tag_slug>/",tag_list,name='tag-list'),
 ]

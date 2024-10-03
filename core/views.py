@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from core.models import *
+from django.shortcuts import render,get_object_or_404
+from taggit.models import Tag
 # Create your views here.
 
 
@@ -68,4 +70,17 @@ def product_detail(request,pid):
         'products':products
     }
     return render(request,'core/product-detail.html',context)
+
+def tag_list(request,tag_slug=None):
+    product=Products.objects.filter(product_status="published").order_by("-id")
+    tag=None
+    if tag_slug:
+        tag=get_object_or_404(Tag,slug=tag_slug)
+        products=product.filter(tags=tag)
+    context={
+        "products":products,
+        "tag":tag,
+    }
+    return render(request,'core/tag.html',context)
+
 
