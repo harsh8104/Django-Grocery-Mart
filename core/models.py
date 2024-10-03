@@ -100,8 +100,8 @@ class Products(models.Model):
     date=models.DateTimeField(auto_now_add=True)
     updated=models.DateTimeField(null=True,blank=True)
 
-    type=models.CharField(max_length=100,default='Organic',null=True,blank=True),
-    stock_count=models.CharField(max_length=100,default='10',null=True,blank=True),
+    type=models.CharField(max_length=100,default='Organic',null=True,blank=True)
+    stock_count=models.CharField(max_length=100,default='10',null=True,blank=True)
     life=models.CharField(max_length=100,default='100',null=True,blank=True)
     mfd=models.DateTimeField(auto_now_add=False,null=True,blank=True)
 

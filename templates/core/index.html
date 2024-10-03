@@ -682,7 +682,7 @@
               >
                 <div class="product-img-action-wrap">
                   <div class="product-img product-img-zoom">
-                    <a href="shop-product-right.html">
+                    <a href="{% url 'core:product-detail' prod.pid %}">
                       <img
                         class="default-img"
                         src="{{ prod.image.url }}"
@@ -724,10 +724,10 @@
                 </div>
                 <div class="product-content-wrap">
                   <div class="product-category">
-                    <a href="shop-grid-right.html">{{prod.category}}</a>
+                    <a href="{% url 'core:category-product-list' prod.category.cid %}">{{prod.category}}</a>
                   </div>
                   <h2>
-                    <a href="shop-product-right.html"
+                    <a href="{% url 'core:product-detail' prod.pid %}"
                       >{{prod.title}}</a
                     >
                   </h2>
@@ -739,7 +739,7 @@
                   </div>
                   <div>
                     <span class="font-small text-muted"
-                      >By <a href="vendor-details-1.html">{{prod.vendor}}</a></span
+                      >By <a href="{% url 'core:vendor-detail' prod.vendor.vid %}">{{prod.vendor}}</a></span
                     >
                   </div>
                   <div class="product-card-bottom">

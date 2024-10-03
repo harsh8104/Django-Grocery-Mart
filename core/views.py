@@ -59,11 +59,13 @@ def vendor_list_detail(request,vid):
 
 def product_detail(request,pid):
     product=Products.objects.get(pid=pid)
+    products=Products.objects.filter(category=product.category).exclude(pid=pid)
 
     p_image=product.p_images.all()
     context={
         'product':product,
-        'p_image':p_image
+        'p_image':p_image,
+        'products':products
     }
     return render(request,'core/product-detail.html',context)
 
