@@ -3,6 +3,7 @@ from shortuuid.django_fields import ShortUUIDField
 from django.utils.html import mark_safe
 from userauth.models import User
 from taggit.managers import TaggableManager
+from ckeditor_uploader.fields import RichTextUploadingField 
 # Create your models here.
 
 def user_directory_path(instance,filename):
@@ -54,7 +55,7 @@ class Vendor(models.Model):
     title=models.CharField(max_length=100,default='Nestify Vendor')
     image=models.ImageField(upload_to=user_directory_path,default="vendor.jpg")
     cover_image=models.ImageField(upload_to=user_directory_path,default="vendor.jpg")
-    description=models.TextField(null=True,blank=True,default='I am an amazing vendor')
+    description=RichTextUploadingField(null=True,blank=True,default='I am an amazing vendor')
     address=models.CharField(max_length=100,default='S.G Highway Ahmedabad')
     contact=models.CharField(max_length=100,default='+91 123456789')
     chat_resp_time=models.CharField(max_length=100,default='100')
@@ -79,7 +80,7 @@ class Products(models.Model):
     pid=ShortUUIDField(unique=True,length=10,max_length=30,prefix='pro',alphabet='abcdefgh12345')
     title=models.CharField(max_length=100,default='Fresh Pear')
     image=models.ImageField(upload_to=user_directory_path,default="product.jpg")
-    description=models.TextField(null=True,blank=True,default='This is the product')
+    description=RichTextUploadingField(null=True,blank=True,default='This is the product')
 
     user=models.ForeignKey(User,on_delete=models.SET_NULL,null=True)
     category=models.ForeignKey(Category,on_delete=models.SET_NULL,null=True,related_name='category')
@@ -87,7 +88,7 @@ class Products(models.Model):
     price=models.DecimalField(max_digits=9999999,decimal_places=2,default="1.99")
     old_price=models.DecimalField(max_digits=9999999,decimal_places=2,default="2.99")
 
-    specifications=models.TextField(null=True,blank=True,default="This is special product")
+    specifications=RichTextUploadingField(null=True,blank=True,default="This is special product")
     # tags=models.ForeignKey(Tags,on_delete=models.SET_NULL,null=True)
 
     product_status=models.CharField(choices=STATUS,max_length=10,default='in_review')

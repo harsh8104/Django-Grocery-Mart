@@ -78,7 +78,7 @@
                       </div>
                     </div>
                     <div class="short-desc mb-30">
-                      <p class="font-lg">{{product.description}}</p>
+                      <p class="font-lg">{{product.description|safe}}</p>
                     </div>
                     <!-- <div class="attr-detail attr-size mb-30">
                       <strong class="mr-10">Size / Weight: </strong>
@@ -197,7 +197,7 @@
                   <div class="tab-content shop_info_tab entry-main-content">
                     <div class="tab-pane fade show active" id="Description">
                       <div>
-                        <p>{{product.description}}</p>
+                        <p>{{product.description|safe}}</p>
                       </div>
                     </div>
                     <div class="tab-pane fade" id="Additional-info">
