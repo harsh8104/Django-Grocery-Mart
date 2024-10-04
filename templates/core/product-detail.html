@@ -138,10 +138,10 @@
                           SKU: <a href="#">{{product.sku}}</a>
                         </li>
                         <li class="mb-5">
-                          Tags:
-                          {% for t in product.tags.all %}
-                           <a href="{% url 'core:tag-list' t.slug %}" rel="tag">{{t}}</a>,
-                          {% endfor %}
+                          Tags: {% for t in product.tags.all %}
+                          <a href="{% url 'core:tag-list' t.slug %}" rel="tag"
+                            >{{t}}</a
+                          >, {% endfor %}
                         </li>
                         <li>
                           Stock:<span class="in-stock text-brand ml-5"
@@ -190,7 +190,7 @@
                         id="Reviews-tab"
                         data-bs-toggle="tab"
                         href="#Reviews"
-                        >Reviews (3)</a
+                        >Reviews ({{reviews.count}})</a
                       >
                     </li>
                   </ul>
@@ -292,13 +292,12 @@
                     </div>
                     <div class="tab-pane fade" id="Vendor-info">
                       <div class="vendor-logo d-flex mb-30">
-                        <img
-                          src="{{product.vendor.image.url}}"
-                          alt=""
-                        />
+                        <img src="{{product.vendor.image.url}}" alt="" />
                         <div class="vendor-name ml-15">
                           <h6>
-                            <a href="vendor-details-2.html">{{product.vendor.title}}</a>
+                            <a href="vendor-details-2.html"
+                              >{{product.vendor.title}}</a
+                            >
                           </h6>
                           <div class="product-rate-cover text-end">
                             <div class="product-rate d-inline-block">
@@ -319,9 +318,7 @@
                             src="{% static 'assets/imgs/theme/icons/icon-location.svg' %}"
                             alt=""
                           /><strong>Address: </strong>
-                          <span
-                            >{{product.vendor.address}}</span
-                          >
+                          <span>{{product.vendor.address}}</span>
                         </li>
                         <li>
                           <img
@@ -338,16 +335,18 @@
                         </div>
                         <div class="mr-30">
                           <p class="text-brand font-xs">Ship on time</p>
-                          <h4 class="mb-0">{{product.vendor.shipping_on_time}}%</h4>
+                          <h4 class="mb-0">
+                            {{product.vendor.shipping_on_time}}%
+                          </h4>
                         </div>
                         <div>
                           <p class="text-brand font-xs">Chat response</p>
-                          <h4 class="mb-0">{{product.vendor.chat_resp_time}}%</h4>
+                          <h4 class="mb-0">
+                            {{product.vendor.chat_resp_time}}%
+                          </h4>
                         </div>
                       </div>
-                      <p>
-                        {{product.vendor.description}}
-                      </p>
+                      <p>{{product.vendor.description}}</p>
                     </div>
                     <div class="tab-pane fade" id="Reviews">
                       <!--Comments-->
@@ -356,6 +355,7 @@
                           <div class="col-lg-8">
                             <h4 class="mb-30">Customer questions & answers</h4>
                             <div class="comment-list">
+                              {% for r in reviews %}
                               <div
                                 class="single-comment justify-content-between d-flex mb-30"
                               >
@@ -364,11 +364,11 @@
                                 >
                                   <div class="thumb text-center">
                                     <img
-                                      src="{% static 'assets/imgs/blog/author-2.png' %}"
+                                      src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/2048px-Default_pfp.svg.png"
                                       alt=""
                                     />
                                     <a href="#" class="font-heading text-brand"
-                                      >Sienna</a
+                                      >{{r.user.username}}</a
                                     >
                                   </div>
                                   <div class="desc">
@@ -377,7 +377,7 @@
                                     >
                                       <div class="d-flex align-items-center">
                                         <span class="font-xs text-muted"
-                                          >December 4, 2024 at 3:12 pm
+                                          >{{r.date|date:"d M, Y"}}
                                         </span>
                                       </div>
                                       <div class="product-rate d-inline-block">
@@ -388,106 +388,12 @@
                                       </div>
                                     </div>
                                     <p class="mb-10">
-                                      Lorem ipsum dolor sit amet, consectetur
-                                      adipisicing elit. Delectus, suscipit
-                                      exercitationem accusantium obcaecati quos
-                                      voluptate nesciunt facilis itaque modi
-                                      commodi dignissimos sequi repudiandae
-                                      minus ab deleniti totam officia id
-                                      incidunt?
-                                      <a href="#" class="reply">Reply</a>
+                                      {{r.review}}
                                     </p>
                                   </div>
                                 </div>
-                              </div>
-                              <div
-                                class="single-comment justify-content-between d-flex mb-30 ml-30"
-                              >
-                                <div
-                                  class="user justify-content-between d-flex"
-                                >
-                                  <div class="thumb text-center">
-                                    <img
-                                      src="{% static 'assets/imgs/blog/author-3.png' %}"
-                                      alt=""
-                                    />
-                                    <a href="#" class="font-heading text-brand"
-                                      >Brenna</a
-                                    >
-                                  </div>
-                                  <div class="desc">
-                                    <div
-                                      class="d-flex justify-content-between mb-10"
-                                    >
-                                      <div class="d-flex align-items-center">
-                                        <span class="font-xs text-muted"
-                                          >December 4, 2024 at 3:12 pm
-                                        </span>
-                                      </div>
-                                      <div class="product-rate d-inline-block">
-                                        <div
-                                          class="product-rating"
-                                          style="width: 80%"
-                                        ></div>
-                                      </div>
-                                    </div>
-                                    <p class="mb-10">
-                                      Lorem ipsum dolor sit amet, consectetur
-                                      adipisicing elit. Delectus, suscipit
-                                      exercitationem accusantium obcaecati quos
-                                      voluptate nesciunt facilis itaque modi
-                                      commodi dignissimos sequi repudiandae
-                                      minus ab deleniti totam officia id
-                                      incidunt?
-                                      <a href="#" class="reply">Reply</a>
-                                    </p>
-                                  </div>
-                                </div>
-                              </div>
-                              <div
-                                class="single-comment justify-content-between d-flex"
-                              >
-                                <div
-                                  class="user justify-content-between d-flex"
-                                >
-                                  <div class="thumb text-center">
-                                    <img
-                                      src="{% static 'assets/imgs/blog/author-4.png' %}"
-                                      alt=""
-                                    />
-                                    <a href="#" class="font-heading text-brand"
-                                      >Gemma</a
-                                    >
-                                  </div>
-                                  <div class="desc">
-                                    <div
-                                      class="d-flex justify-content-between mb-10"
-                                    >
-                                      <div class="d-flex align-items-center">
-                                        <span class="font-xs text-muted"
-                                          >December 4, 2024 at 3:12 pm
-                                        </span>
-                                      </div>
-                                      <div class="product-rate d-inline-block">
-                                        <div
-                                          class="product-rating"
-                                          style="width: 80%"
-                                        ></div>
-                                      </div>
-                                    </div>
-                                    <p class="mb-10">
-                                      Lorem ipsum dolor sit amet, consectetur
-                                      adipisicing elit. Delectus, suscipit
-                                      exercitationem accusantium obcaecati quos
-                                      voluptate nesciunt facilis itaque modi
-                                      commodi dignissimos sequi repudiandae
-                                      minus ab deleniti totam officia id
-                                      incidunt?
-                                      <a href="#" class="reply">Reply</a>
-                                    </p>
-                                  </div>
-                                </div>
-                              </div>
+                              </div>  
+                              {% endfor %}
                             </div>
                           </div>
                           <div class="col-lg-4">
@@ -499,7 +405,7 @@
                                   style="width: 90%"
                                 ></div>
                               </div>
-                              <h6>4.8 out of 5</h6>
+                              <h6>{{avg_rating.rating|floatformat}} out of 5</h6>
                             </div>
                             <div class="progress">
                               <span>5 star</span>
@@ -575,59 +481,23 @@
                       <!--comment form-->
                       <div class="comment-form">
                         <h4 class="mb-15">Add a review</h4>
+                        <strong class="text-success" id="review-res"></strong>
                         <div class="product-rate d-inline-block mb-30"></div>
                         <div class="row">
                           <div class="col-lg-8 col-md-12">
                             <form
                               class="form-contact comment_form"
-                              action="#"
+                              action="{% url 'core:add-review' product.pid %}"
                               id="commentForm"
+                              method="POST"
                             >
+                            {% csrf_token %}
                               <div class="row">
                                 <div class="col-12">
                                   <div class="form-group">
-                                    <textarea
-                                      class="form-control w-100"
-                                      name="comment"
-                                      id="comment"
-                                      cols="30"
-                                      rows="9"
-                                      placeholder="Write Comment"
-                                    ></textarea>
+                                  {{review_form}}
                                   </div>
-                                </div>
-                                <div class="col-sm-6">
-                                  <div class="form-group">
-                                    <input
-                                      class="form-control"
-                                      name="name"
-                                      id="name"
-                                      type="text"
-                                      placeholder="Name"
-                                    />
-                                  </div>
-                                </div>
-                                <div class="col-sm-6">
-                                  <div class="form-group">
-                                    <input
-                                      class="form-control"
-                                      name="email"
-                                      id="email"
-                                      type="email"
-                                      placeholder="Email"
-                                    />
-                                  </div>
-                                </div>
-                                <div class="col-12">
-                                  <div class="form-group">
-                                    <input
-                                      class="form-control"
-                                      name="website"
-                                      id="website"
-                                      type="text"
-                                      placeholder="Website"
-                                    />
-                                  </div>
+                                  
                                 </div>
                               </div>
                               <div class="form-group">
@@ -658,7 +528,10 @@
                       <div class="product-cart-wrap hover-up">
                         <div class="product-img-action-wrap">
                           <div class="product-img product-img-zoom">
-                            <a href="{% url 'core:product-detail' p.pid %}" tabindex="0">
+                            <a
+                              href="{% url 'core:product-detail' p.pid %}"
+                              tabindex="0"
+                            >
                               <img
                                 class="default-img"
                                 src="{{p.image.url}}"
@@ -702,7 +575,9 @@
                         </div>
                         <div class="product-content-wrap">
                           <h2>
-                            <a href="{% url 'core:product-detail' p.pid %}" tabindex="0"
+                            <a
+                              href="{% url 'core:product-detail' p.pid %}"
+                              tabindex="0"
                               >{{p.title}}</a
                             >
                           </h2>
@@ -733,7 +608,7 @@
                   <i class="fi fi-rs-marker mr-10 text-brand"></i>
                   <span>
                     {{address.address}} <br />
-                    {% if address.status == True %} 
+                    {% if address.status == True %}
                     <span class="text-success">Verified Address</span>
                     <i class="fa-solid fa-shield-check"></i>
                     {% else %}
@@ -756,7 +631,9 @@
                 </li>
                 <li>
                   <i class="fi fi-rs-diploma mr-10 text-brand"></i>
-                  <span> {{product.vendor.warranty_period}} Months Warranty </span>
+                  <span>
+                    {{product.vendor.warranty_period}} Months Warranty
+                  </span>
                 </li>
               </ul>
             </div>
@@ -765,10 +642,7 @@
             >
               <h5 class="section-title style-3 mb-20">Vendor</h5>
               <div class="vendor-logo d-flex mb-30">
-                <img
-                  src="{{product.vendor.image.url}}"
-                  alt=""
-                />
+                <img src="{{product.vendor.image.url}}" alt="" />
                 <div class="vendor-name ml-15">
                   <h6>
                     <a href="vendor-details-2.html">{{product.vendor.title}}</a>
@@ -789,9 +663,7 @@
                     src="{% static 'assets/imgs/theme/icons/icon-location.svg' %}"
                     alt=""
                   /><strong>Address: </strong>
-                  <span
-                    >{{product.vendor.address}}</span
-                  >
+                  <span>{{product.vendor.address}}</span>
                 </li>
                 <li>
                   <img

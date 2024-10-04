@@ -18,4 +18,6 @@ urlpatterns = [
 
 
     path("products/tags/<tag_slug>/",tag_list,name='tag-list'),
+
+    path('ajax-add-review/<pid>/',ajax_add_review,name='add-review')
 ]
