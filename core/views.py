@@ -72,13 +72,19 @@ def product_detail(request,pid):
     review_form=ProductReviewForm()
 
     p_image=product.p_images.all()
+
+    can_review=True
+    if request.user.is_authenticated:
+        if Product_Review.objects.filter(user=request.user,product=product).exists():
+            can_review=False
     context={
         'product':product,
         'p_image':p_image,
         'reviews':reviews,
         'products':products,
         'avg_rating':avg_rating,
-        'review_form':review_form
+        'review_form':review_form,
+        'can_review':can_review
     }
     return render(request,'core/product-detail.html',context)
 

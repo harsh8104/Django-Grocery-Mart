@@ -9,7 +9,7 @@ User=settings.AUTH_USER_MODEL
 
 def register_view(request):
     if request.method == 'POST':
-        form=UserRegisterForcdm(request.POST or None)
+        form=UserRegisterForm(request.POST or None)
         if form.is_valid():
             new_user=form.save()
             username=form.cleaned_data.get('username')

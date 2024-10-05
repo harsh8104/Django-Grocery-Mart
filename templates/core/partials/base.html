@@ -23,6 +23,7 @@
       href="{% static 'static/assets/css/plugins/animate.min.css' %}"
     />
     <link rel="stylesheet" href="{% static 'assets/css/main.css' %}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   </head>
 
   <body>
@@ -583,8 +584,8 @@
                           <a href="{% url 'userauth:login' %}"
                             ><i class="fi fi-rs-sign-in mr-10"></i>Sign in</a
                           >
-                          </li>
-                          {% endif %}
+                        </li>
+                        {% endif %}
                       </ul>
                     </div>
                   </div>
@@ -619,15 +620,11 @@
                       {% for c in categories %}
                       <li>
                         <a href="{% url 'core:category-product-list' c.cid %}">
-                          <img
-                            src="{{c.image.url}}"
-                            alt=""
-                          />{{c.title}}</a
+                          <img src="{{c.image.url}}" alt="" />{{c.title}}</a
                         >
                       </li>
                       {% endfor %}
                     </ul>
-                    
                   </div>
                   <div class="more_slide_open" style="display: none">
                     <div class="d-flex categori-dropdown-inner">
@@ -706,10 +703,19 @@
                       <a href="#">Category <i class="fi-rs-angle-down"></i></a>
                       <ul class="sub-menu">
                         {% for cat in categories %}
-                        <li><a href="{% url 'core:category-product-list' cat.cid %}">{{cat.title}}</a></li>
+                        <li>
+                          <a
+                            href="{% url 'core:category-product-list' cat.cid %}"
+                            >{{cat.title}}</a
+                          >
+                        </li>
                         {% endfor %}
-                        <hr>
-                        <li><a href="{% url 'core:category' %}">View All Category</a></li>
+                        <hr />
+                        <li>
+                          <a href="{% url 'core:category' %}"
+                            >View All Category</a
+                          >
+                        </li>
                       </ul>
                     </li>
                     <li><a href="{% url 'core:products' %}">Products</a></li>
