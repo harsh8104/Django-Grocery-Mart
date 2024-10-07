@@ -65,3 +65,9 @@ $("#commentForm").submit(function (e) {
     },
   });
 });
+
+$(document).ready(function () {
+  $("#exampleCheckbox").on("click", function () {
+    console.log("Check box clicked");
+  });
+});
