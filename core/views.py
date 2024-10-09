@@ -5,6 +5,7 @@ from django.shortcuts import render,get_object_or_404
 from taggit.models import Tag
 from django.db.models import Count,Avg
 from core.forms import ProductReviewForm
+from django.template.loader import render_to_string
 # Create your views here.
 
 
@@ -127,3 +128,24 @@ def ajax_add_review(request,pid):
         'avg_rating':avg_reviews}
     )
     
+def filter_product(request):
+    categories=request.GET.getlist('category[]')
+    vendors=request.GET.getlist('vendor[]')
+
+    products=Products.objects.filter(product_status="published").order_by("-id").distinct()
+
+    if len(categories)>0:
+        products=products.filter(category__id__in=categories).distinct()
+
+
+    if len(vendors)>0:
+        products=products.filter(vendor__id__in=vendors).distinct()
+    
+    data=render_to_string("core/async/product-list.html",{
+        "products":products,
+    })
+    return JsonResponse({"data":data})
+
+
+
+     
