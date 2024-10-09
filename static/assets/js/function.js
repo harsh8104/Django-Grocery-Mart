@@ -101,4 +101,26 @@ $(document).ready(function () {
       });
     });
   });
+  $("#max_price").on("blur",function(){
+    let min_price=$(this).attr("min")
+    let max_price=$(this).attr("max")
+    let curr_price=$(this).val()
+    
+    if((curr_price < parseInt(min_price)) || (curr_price > parseInt(max_price)))
+    {
+      min_Price=Math.round(min_price*100)/100
+      max_Price=Math.round(max_price*100)/100
+
+      alert("Price must be between"+" "+min_Price+" "+"and"+" "+max_Price)
+      
+      $(this).val(min_Price)
+      $("#range").val(min_price)
+      $(this).focus()
+      
+      return false
+    }
+
+  })
 });
+
+
