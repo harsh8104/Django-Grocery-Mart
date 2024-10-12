@@ -23,7 +23,13 @@
       href="{% static 'static/assets/css/plugins/animate.min.css' %}"
     />
     <link rel="stylesheet" href="{% static 'assets/css/main.css' %}" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
   </head>
 
   <body>
@@ -46,9 +52,7 @@
           <div class="modal-body">
             <div
               class="deal"
-              style="
-                background-image: url({% static 'assets/imgs/banner/popup-1.png' %});
-              "
+              style="background-image: url({% static 'assets/imgs/banner/popup-1.png' %})"
             >
               <div class="deal-top">
                 <h6 class="mb-10 text-brand-2">Deal of the Day</h6>
@@ -474,7 +478,7 @@
                         alt="Nest"
                         src="{% static 'assets/imgs/theme/icons/icon-cart.svg' %}"
                       />
-                      <span class="pro-count blue">2</span>
+                      <span class="pro-count blue white cart-items-count">{{request.session.cart_data_obj|length}}</span>
                     </a>
                     <a href="shop-cart.html"><span class="lable">Cart</span></a>
                     <div class="cart-dropdown-wrap cart-dropdown-hm2">
@@ -964,7 +968,7 @@
                       alt="Nest"
                       src="{% static 'assets/imgs/theme/icons/icon-heart.svg' %}"
                     />
-                    <span class="pro-count white">4</span>
+                    <span class="pro-count">4</span>
                   </a>
                 </div>
                 <div class="header-action-icon-2">
@@ -973,7 +977,7 @@
                       alt="Nest"
                       src="{% static 'assets/imgs/theme/icons/icon-cart.svg' %}"
                     />
-                    <span class="pro-count white">2</span>
+                    <span class="pro-count white white cart-items-count">{{request.session.cart_data_obj|length}}</span>
                   </a>
                   <div class="cart-dropdown-wrap cart-dropdown-hm2">
                     <ul>

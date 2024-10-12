@@ -21,5 +21,8 @@ urlpatterns = [
 
     path('ajax-add-review/<pid>/',ajax_add_review,name='add-review'),
 
-    path('filter-products/',filter_product,name='filter-products')
+    path('filter-products/',filter_product,name='filter-products'),
+
+    path('add-to-cart/',add_to_cart,name='add-to-cart')
+
 ]
