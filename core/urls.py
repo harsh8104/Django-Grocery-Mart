@@ -23,6 +23,11 @@ urlpatterns = [
 
     path('filter-products/',filter_product,name='filter-products'),
 
-    path('add-to-cart/',add_to_cart,name='add-to-cart')
+    path('add-to-cart/',add_to_cart,name='add-to-cart'),
+
+    path('cart/',cart_items,name='cart-items'),
+
+    path('delete-product/',delete_items,name='delete-product')
+
 
 ]

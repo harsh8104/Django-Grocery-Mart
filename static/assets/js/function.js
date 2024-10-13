@@ -196,3 +196,25 @@ $(".add-to-cart-btn").on("click", function () {
     },
   });
 });
+
+$(".delete-product").on("click", function () {
+  let product_id = $(this).attr("data-product");
+  let this_val = $(this);
+  console.log(product_id);
+
+  $.ajax({
+    url: "/delete-product",
+    data: {
+      id: product_id,
+    },
+    dataType: "json",
+    beforeSend: function () {
+      this_val.hide();
+    },
+    success: function (res) {
+      this_val.show();
+      $(".cart-items-count").text(res.totalcartitems);
+      $("#cart-list").html(res.data);
+    },
+  });
+});

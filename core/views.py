@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.http import HttpResponse,JsonResponse
 from core.models import *
 from django.shortcuts import render,get_object_or_404
@@ -176,3 +176,34 @@ def add_to_cart(request):
 
 
      
+def cart_items(request):
+    cart_total=0
+    if 'cart_data_obj' in request.session:
+        for pid,item in request.session['cart_data_obj'].items():
+            cart_total+=int(item['qty'])*float(item['price'])
+        return render(request,'core/cart.html',{"cart_data":request.session['cart_data_obj'],'totalcartitems':len(request.session['cart_data_obj']),'cart_total':cart_total})
+    else:
+        return redirect('core:index')
+
+
+
+
+def delete_items(request):
+    product_id=str(request.GET['id'])
+    if 'cart_data_obj' in request.session:
+        if product_id in request.session['cart_data_obj']:
+            cart_data=request.session['cart_data_obj']
+            del request.session['cart_data_obj'][product_id]
+            request.session['cart_data_obj']=cart_data
+    cart_total=0
+    if 'cart_data_obj' in request.session:
+        for pid,item in request.session['cart_data_obj'].items():
+            cart_total+=int(item['qty'])*float(item['price'])
+            
+    data=render_to_string("core/async/cart-list.html",{
+        "cart_data":request.session['cart_data_obj'],'totalcartitems':len(request.session['cart_data_obj']),'cart_total':cart_total
+    })
+    return JsonResponse({"data":data,'totalcartitems':len(request.session['cart_data_obj'])})
+
+
+    
