@@ -129,29 +129,69 @@ $(document).ready(function () {
   });
 });
 
-$("#add-to-cart-btn").on("click", function () {
-  let qty = $("#product-quantity").val();
-  let product_title = $("#product-title").val();
-  let product_id = $(".product-id").val();
-  let product_price = $(".curr-price").text();
+// $("#add-to-cart-btn").on("click", function () {
+//   let qty = $("#product-quantity").val();
+//   let product_title = $("#product-title").val();
+//   let product_id = $(".product-id").val();
+//   let product_price = $(".curr-price").text();
 
+//   let this_val = $(this);
+
+//   $.ajax({
+//     url: "/add-to-cart",
+//     data: {
+//       id: product_id,
+//       qty: qty,
+//       price: product_price,
+//       title: product_title,
+//     },
+//     dataType: "json",
+//     beforeSend: function () {
+//       console.log("Adding...");
+//     },
+//     success: function (res) {
+//       this_val.html("Item added to cart");
+//       console.log("Added");
+//       $(".cart-items-count").text(res.totalcartitems);
+//     },
+//   });
+// });
+
+$(".add-to-cart-btn").on("click", function () {
   let this_val = $(this);
+  let index_val = this_val.attr("data-index");
+
+  let qty = $(".product-qty-" + index_val).val();
+  let product_title = $(".prod-title-" + index_val).val();
+  let product_id = $(".prod-id-" + index_val).val();
+  let product_price = $(".curr-price-" + index_val).text();
+  let product_image = $(".prod-image-" + index_val).val();
+  let product_pid = $(".prod-pid-" + index_val).val();
+
+  console.log(qty);
+  console.log(product_title);
+  console.log(product_id);
+  console.log(product_price);
+  console.log(product_image);
+  console.log(product_pid);
 
   $.ajax({
     url: "/add-to-cart",
     data: {
       id: product_id,
       qty: qty,
+      pid: product_pid,
       price: product_price,
       title: product_title,
+      image: product_image,
     },
     dataType: "json",
     beforeSend: function () {
       console.log("Adding...");
     },
     success: function (res) {
-      this_val.html("Item added to cart");
-      console.log("Added");
+      this_val.html("✔");
+      // console.log("Added");
       $(".cart-items-count").text(res.totalcartitems);
     },
   });
